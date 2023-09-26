@@ -253,10 +253,10 @@ function Get-MenuSelection {
 
 function New-LeagueClient-Shortcut {
 	param ( 
-        [string]$DestinationPath 		= "$DESKTOP_PATH/$SHORTCUT_NAME.lnk", 
-        [string]$DestinationDescription	= "$SHORTCUT_NAME", 
+        [string]$DestinationPath 		= "$DESKTOP_PATH/$SHORTCUT_NAME - $LOCALE_NAME.lnk", 
+        [string]$DestinationDescription	= "$SHORTCUT_NAME - Lang: $LOCALE_NAME", 
         [string]$SourceExe 				= "$LEAGUE_CLIENT_LOCATION", 
-        [string]$ArgumentsToSourceExe 	= "--locale=$LOCALE"
+        [string]$ArgumentsToSourceExe 	= "--locale=$LOCALE_CODE"
 	)
 
     $WshShell = New-Object -comObject WScript.Shell
@@ -279,14 +279,11 @@ function New-LeagueClient-Shortcut {
 }
 
 try {
-    
-    $LOCALE = $LOCALE_CODES[
-        $(
-            Get-MenuSelection `
-                -MenuItems $MenuOptions `
-                -MenuPrompt "Which language do you want? (Use Arrow Keys)"
-        )
-    ]
+    $LOCALE_INDEX = Get-MenuSelection `
+                        -MenuItems $MenuOptions `
+                        -MenuPrompt "Which language do you want? (Use Arrow Keys)"
+    $LOCALE_CODE = $LOCALE_CODES[$LOCALE_INDEX]
+    $LOCALE_NAME = $LOCALE_NAMES[$LOCALE_INDEX]
 
     Clear-Log
     Write-Log -level INFO -message "Starting Script..."
