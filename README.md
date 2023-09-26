@@ -1,7 +1,7 @@
 # League Of Languages
 
-[![League Of Languages Badge](https://img.shields.io/badge/League%20Of%20Languages%20-v1.0.0-A9FA5C.svg?style=for-the-badge&labelColor=9f32d1&logo=leagueoflegends&logoColor=white)](../../releases/latest)
-[![GitHub Release](https://img.shields.io/github/downloads-pre/KuryKat/LeagueOfLanguages/1.0.0/total?style=for-the-badge&labelColor=9f32d1&logo=github)](../../releases/latest)
+[![League Of Languages Badge](https://img.shields.io/badge/League%20Of%20Languages%20-v2.0.0-A9FA5C.svg?style=for-the-badge&labelColor=9f32d1&logo=leagueoflegends&logoColor=white)](../../releases/latest)
+[![GitHub Release](https://img.shields.io/github/downloads-pre/KuryKat/LeagueOfLanguages/2.0.0/total?style=for-the-badge&labelColor=9f32d1&logo=github)](../../releases/latest)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/KuryKat?style=for-the-badge&logo=GitHub&labelColor=9f32d1)](https://github.com/sponsors/KuryKat)
 [![Repository License](https://img.shields.io/github/license/KuryKat/LeagueOfLanguages?style=for-the-badge&logo=gnu&labelColor=9f32d1)](LICENSE)
 
@@ -18,15 +18,15 @@ Welcome to the "League Of Languages" project! This open-source script allows Lea
 
 **[DOWNLOAD HERE](../../releases/latest)**
 
-To get started with "League Of Languages," follow the steps outlined in our [Getting Started Guide](../../wiki/Getting-Started).
+To get started with "League Of Languages," follow the steps outlined in our [Getting Started Guide](../../wiki/Getting-Started-2.0.0).
 
 ## Frequently Asked Questions (FAQ)
 
-Have questions about using "League Of Languages"? Check out our [FAQ Section](../../wiki/FAQ) for answers to common inquiries.
+Have questions about using "League Of Languages"? Check out our [FAQ Section](../../wiki/FAQ-2.0.0) for answers to common inquiries.
 
 ## Troubleshooting
 
-Encountering issues while using the script? Refer to our [Troubleshooting Guide](../../wiki/Troubleshooting) for solutions to common problems.
+Encountering issues while using the script? Refer to our [Troubleshooting Guide](../../wiki/Troubleshooting-2.0.0) for solutions to common problems.
 
 ## List of League of Legends Locales
 
