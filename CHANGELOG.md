@@ -1,3 +1,15 @@
+### League Of Languages v2.0.1
+
+### 🌟 Improvements
+
+- Small Patch to change the way Shortcuts are named!
+
+### 🐛 Fixed Bugs
+
+- Reverted Desktop Path back to Default Value.
+
+---
+
 ### League Of Languages v2.0.0
 
 ### 🌟 Improvements
