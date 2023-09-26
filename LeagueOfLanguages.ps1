@@ -1,5 +1,5 @@
 # League Of Languages Script
-# Version: 1.0.0
+# Version: 2.0.0
 # Author: KuryKat
 # License: GPLv3
 
@@ -8,8 +8,8 @@ Description:
 This script creates a shortcut for the League of Legends client with a specified language.
 
 Usage:
-1. Edit the variables in this script to customize your preferences.
-2. Run the script using PowerShell.
+1. Run the script using PowerShell.
+2. Choose a Language from the Menu using the Arrow Keys
 3. A shortcut with your chosen language will be created on your desktop.
 
 Disclaimer:
@@ -19,14 +19,10 @@ License:
 This script is released under the GPLv3 License. See the "LICENSE" file for details.
 #>
 
-# Define your preferred language ( Locale List: https://rentry.co/league_locales )
-# Default Value: "en_US"
-$LOCALE="en_US"
-
 # The path to your Desktop folder
 # Only change this if you have your Desktop on another Disk!
 # Default Value for Windows: "$HOME/Desktop"
-$DESKTOP_PATH = "$HOME/Desktop"
+$DESKTOP_PATH = "D:/repos/Personal-Projects/LeagueOfLanguages"
 
 # The League Client Location!
 # Only change this if you installed the game on another Disk!
@@ -39,6 +35,61 @@ $LEAGUE_CLIENT_LOCATION = "C:/Riot Games/League of Legends/LeagueClient.exe"
 # Note: This will also be used as the Description for the Shortcut!
 # Default Value: "League of Legends"
 $SHORTCUT_NAME = "League of Legends"
+
+# An Array containing all the Locale Codes
+$LOCALE_CODES = @(
+    "zh_CN",
+    "en_AU",
+    "en_GB",
+    "en_US",
+    "fr_FR",
+    "de_DE",
+    "el_GR",
+    "hu_HU",
+    "it_IT",
+    "ja_JP",
+    "ko_KR",
+    "pl_PL",
+    "pt_BR",
+    "ro_RO",
+    "ru_RU",
+    "es_MX",
+    "es_ES",
+    "zh_TW",
+    "tr_TR"
+)
+
+# An Array containing all the Locale Names
+$LOCALE_NAMES = @(
+    "Chinese",
+    "English Australian",
+    "English Great Britain",
+    "English USA",
+    "French",
+    "German",
+    "Greek",
+    "Hungarian",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Polish",
+    "Portuguese",
+    "Romanian",
+    "Russian",
+    "Spanish Latin America",
+    "Spanish Spain",
+    "Taiwanese",
+    "Turkish"
+)
+
+# An Array containing all the Menu Options
+$MenuOptions = @()
+for ($i = 0; $i -lt $LOCALE_CODES.Length; $i++) {
+    $LOCALE_CODE = $LOCALE_CODES[$i]
+    $LOCALE_NAME = $LOCALE_NAMES[$i]
+    
+    $MenuOptions += "($LOCALE_CODE) $LOCALE_NAME"
+}
 
 enum LogLevel {
     ERROR
@@ -62,6 +113,7 @@ function Clear-Log {
     Clear-Content -Path $LOG_FILE_PATH
 }
 
+# A very Neat Log function
 function Write-Log {
     param(
         [Parameter(Mandatory = $true)][string] $message,
@@ -128,6 +180,69 @@ function Write-Log {
     }
 }
 
+# A very Neat Menu function
+function Get-MenuSelection {
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [String[]]$MenuItems,
+        [Parameter(Mandatory = $true)]
+        [String]$MenuPrompt
+    )
+    $cursorPosition = $host.UI.RawUI.CursorPosition
+    $pos = 0
+
+    function Write-Menu {
+        param (
+            [int]$selectedItemIndex
+        )
+        $Host.UI.RawUI.CursorPosition = $cursorPosition
+        $prompt = $MenuPrompt
+        $maxLineLength = ($MenuItems | Measure-Object -Property Length -Maximum).Maximum + 4
+        while ($prompt.Length -lt $maxLineLength + 4) {
+            $prompt = " $prompt "
+        }
+        Write-Host $prompt -ForegroundColor Green
+        for ($i = 0; $i -lt $MenuItems.Count; $i++) {
+            $line = "    $($MenuItems[$i])" + (" " * ($maxLineLength - $MenuItems[$i].Length))
+            if ($selectedItemIndex -eq $i) {
+                Write-Host $line -ForegroundColor Blue -BackgroundColor Gray
+            }
+            else {
+                Write-Host $line
+            }
+        }
+    }
+
+    Write-Menu -selectedItemIndex $pos
+    $key = $null
+    while ($key -ne 13) {
+        $press = $host.ui.rawui.readkey("NoEcho,IncludeKeyDown")
+        $key = $press.virtualkeycode
+        if ($key -eq 0) {
+            Write-Log -level INFO -message "^C"
+            Write-Log -level VERBOSE -message "Terminated"
+            pause
+            exit
+        }
+        if ($key -eq 38) {
+            $pos--
+        }
+        if ($key -eq 40) {
+            $pos++
+        }
+        if ($pos -lt 0) { $pos = $MenuItems.count - 1 }
+        if ($pos -eq $MenuItems.count) { $pos = 0 }
+
+        Write-Menu -selectedItemIndex $pos
+    }
+
+    return $pos
+}
+
 function New-LeagueClient-Shortcut {
 	param ( 
         [string]$DestinationPath 		= "$DESKTOP_PATH/$SHORTCUT_NAME.lnk", 
@@ -138,7 +253,7 @@ function New-LeagueClient-Shortcut {
 
     $WshShell = New-Object -comObject WScript.Shell
 
-    Write-Log -level DEBUG -message "Creating Shortcut at $DestinationPath"
+    Write-Log -level DEBUG -message "Creating Shortcut at '$DestinationPath'"
     $Shortcut = $WshShell.CreateShortcut($DestinationPath)
 
     Write-Log -level DEBUG -message "Shortcut Target: $SourceExe"
@@ -156,6 +271,15 @@ function New-LeagueClient-Shortcut {
 }
 
 try {
+    
+    $LOCALE = $LOCALE_CODES[
+        $(
+            Get-MenuSelection `
+                -MenuItems $MenuOptions `
+                -MenuPrompt "Which language do you want? (Use Arrow Keys)"
+        )
+    ]
+
     Clear-Log
     Write-Log -level INFO -message "Starting Script..."
     New-LeagueClient-Shortcut
