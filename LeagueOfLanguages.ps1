@@ -24,7 +24,7 @@ This script is released under the GPLv3 License. See the "LICENSE" file for deta
 # The path to your Desktop folder
 # Only change this if you have your Desktop on another Disk!
 # Default Value for Windows: "$HOME/Desktop"
-$DESKTOP_PATH = "D:/repos/Personal-Projects/LeagueOfLanguages"
+$DESKTOP_PATH = "$HOME/Desktop"
 
 # The League Client Location!
 # Only change this if you installed the game on another Disk!
