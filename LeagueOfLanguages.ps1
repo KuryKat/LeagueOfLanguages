@@ -36,6 +36,12 @@ $LEAGUE_CLIENT_LOCATION = "C:/Riot Games/League of Legends/LeagueClient.exe"
 # Default Value: "League of Legends"
 $SHORTCUT_NAME = "League of Legends"
 
+###########################################################################
+#                                                                         # 
+# AVOID EDITING ANYTHING BELOW THIS IF YOU DON'T KNOW WHAT YOU'RE DOING!! #
+#                                                                         # 
+###########################################################################
+
 # An Array containing all the Locale Codes
 $LOCALE_CODES = @(
     "zh_CN",
