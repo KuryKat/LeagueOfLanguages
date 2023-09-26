@@ -1,7 +1,7 @@
 # League Of Languages
 
 [![League Of Languages Badge](https://img.shields.io/badge/League%20Of%20Languages%20-v1.0.0-A9FA5C.svg?style=for-the-badge&labelColor=9f32d1&logo=leagueoflegends&logoColor=white)](../../releases/latest)
-[![GitHub Release](https://img.shields.io/github/downloads-pre/KuryKat/LeagueOfLanguages/1.0.0/total?style=for-the-badge&labelColor=9f32d1)](../../releases/latest)
+[![GitHub Release](https://img.shields.io/github/downloads-pre/KuryKat/LeagueOfLanguages/1.0.0/total?style=for-the-badge&labelColor=9f32d1&logo=github)](../../releases/latest)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/KuryKat?style=for-the-badge&logo=GitHub&labelColor=9f32d1)](https://github.com/sponsors/KuryKat)
 [![Repository License](https://img.shields.io/github/license/KuryKat/LeagueOfLanguages?style=for-the-badge&logo=gnu&labelColor=9f32d1)](LICENSE)
 
