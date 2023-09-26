@@ -7,6 +7,8 @@
 Description:
 This script creates a shortcut for the League of Legends client with a specified language.
 
+CHECK THE WIKI (https://github.com/KuryKat/LeagueOfLanguages/wiki) FOR MORE INFORMATION!!
+
 Usage:
 1. Run the script using PowerShell.
 2. Choose a Language from the Menu using the Arrow Keys
